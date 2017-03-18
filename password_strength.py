@@ -15,13 +15,13 @@ password_patterns = {
 
 
 def is_password_top_used(password):
-    """
-    Check password against well-known top used passwords
-    """
-    with open('top_10000.txt', mode='r', encoding='utf-8') as f:
-        if password in f.read():
-            return True
-    return False
+    try:
+        with open('top.txt', mode='r', encoding='utf-8') as f:
+            if password in f.read():
+                return True
+        return False
+    except OSError:
+        pass
 
 
 def get_password_strength(password):
