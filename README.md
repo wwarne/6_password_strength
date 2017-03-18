@@ -11,7 +11,9 @@ Every flaw of the password reduces the score.
 
 # How to use
 
-Just run `python password_strength.py`
+1. Download a list of top-used passwords of your choice from [here](https://github.com/danielmiessler/SecLists/tree/master/Passwords) 
+2. Rename the list to `top.txt` and place it in same directory as `password_strength.py`
+3. Run `python password_strength.py`
 
 # Example of use
 
