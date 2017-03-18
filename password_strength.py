@@ -1,5 +1,6 @@
 import re
 from collections import namedtuple
+from getpass import getpass
 
 pattern_class = namedtuple('pattern_class', ['regexp', 'points'])
 
@@ -39,5 +40,5 @@ def get_password_strength(password):
 
 
 if __name__ == '__main__':
-    psswd = input('Please enter your password: ')
+    psswd = getpass('Please enter your password: ')
     print('Your password is {}/10'.format(get_password_strength(psswd)))
