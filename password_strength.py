@@ -1,4 +1,5 @@
 import re
+import os.path
 from collections import namedtuple
 from getpass import getpass
 
@@ -15,16 +16,21 @@ password_patterns = {
     'len_>=_8': pattern_class(regexp=re.compile(r'.{8,}'), points=2),
     'len_>=_14': pattern_class(regexp=re.compile(r'.{14,}'), points=2)
 }
+BLACKLIST_FILENAME = 'top.txt'
+
+
+def is_blacklist_available():
+    if os.path.isfile(BLACKLIST_FILENAME):
+        return True
+    return False
 
 
 def is_password_top_used(password):
-    try:
-        with open('top.txt', mode='r', encoding='utf-8') as f:
+    if is_blacklist_available():
+        with open(BLACKLIST_FILENAME, mode='r', encoding='utf-8') as f:
             if password in f.read():
                 return True
-        return False
-    except OSError:
-        pass
+    return False
 
 
 def get_password_strength(password):
@@ -38,5 +44,7 @@ def get_password_strength(password):
 
 
 if __name__ == '__main__':
+    if not is_blacklist_available():
+        print('[INFO] For a more accurate score provide a file with top-used passwords.')
     psswd = getpass('Please enter your password: ')
     print('Your password is {}/10'.format(get_password_strength(psswd)))
