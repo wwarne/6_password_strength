@@ -28,8 +28,7 @@ def is_blacklist_available():
 def is_password_top_used(password):
     if is_blacklist_available():
         with open(BLACKLIST_FILENAME, mode='r', encoding='utf-8') as f:
-            if password in f.read():
-                return True
+            return password in f.read()
     return False
 
 
