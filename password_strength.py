@@ -5,7 +5,7 @@ from getpass import getpass
 
 pattern_class = namedtuple('pattern_class', ['regexp', 'points'])
 
-password_patterns = {
+PASSWORD_PATTERNS = {
     'lower_case': pattern_class(regexp=re.compile(r'[a-zа-я]'), points=1),
     'upper_case': pattern_class(regexp=re.compile(r'[A-ZА-Я]'), points=1),
     'digits': pattern_class(regexp=re.compile(r'[0-9]'), points=1),
@@ -37,7 +37,7 @@ def get_password_strength(password):
     if is_password_top_used(password):
         return 1
     strength = 1
-    for pattern in password_patterns.values():
+    for pattern in PASSWORD_PATTERNS.values():
         if pattern.regexp.search(password):
             strength += pattern.points
     return strength
