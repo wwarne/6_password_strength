@@ -11,7 +11,9 @@ password_patterns = {
     'special_characters': pattern_class(regexp=re.compile(r'[\[\]{}()<>~_+-=!?;:,.@#$%&`*/|\\^\' ]'), points=2),
     'phone_number': pattern_class(regexp=re.compile(r'\+?[0-9\-()\s]{6,}'), points=-2),
     'date': pattern_class(regexp=re.compile(r'([0-9]{1,4}[./\s]?){3}'), points=-2),
-    'car_number': pattern_class(regexp=re.compile(r'[a-zа-я][0-9]{3}[a-zа-я]{2}'), points=-2)
+    'car_number': pattern_class(regexp=re.compile(r'[a-zа-я][0-9]{3}[a-zа-я]{2}'), points=-2),
+    'len_>=_8': pattern_class(regexp=re.compile(r'.{8,}'), points=2),
+    'len_>=_14': pattern_class(regexp=re.compile(r'.{14,}'), points=2)
 }
 
 
@@ -32,10 +34,6 @@ def get_password_strength(password):
     for pattern in password_patterns.values():
         if pattern.regexp.search(password):
             strength += pattern.points
-    if len(password) >= 8:
-        strength += 2
-    if len(password) >= 14:
-        strength += 2
     return strength
 
 
