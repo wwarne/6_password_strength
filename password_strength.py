@@ -3,18 +3,18 @@ import os.path
 from collections import namedtuple
 from getpass import getpass
 
-pattern_class = namedtuple('pattern_class', ['regexp', 'points'])
+Pattern = namedtuple('pattern_class', ['regexp', 'points'])
 
 PASSWORD_PATTERNS = {
-    'lower_case': pattern_class(regexp=re.compile(r'[a-zа-я]'), points=1),
-    'upper_case': pattern_class(regexp=re.compile(r'[A-ZА-Я]'), points=1),
-    'digits': pattern_class(regexp=re.compile(r'[0-9]'), points=1),
-    'special_characters': pattern_class(regexp=re.compile(r'[\[\]{}()<>~_+-=!?;:,.@#$%&`*/|\\^\' ]'), points=2),
-    'phone_number': pattern_class(regexp=re.compile(r'\+?[0-9\-()\s]{6,}'), points=-2),
-    'date': pattern_class(regexp=re.compile(r'([0-9]{1,4}[./\s]?){3}'), points=-2),
-    'car_number': pattern_class(regexp=re.compile(r'[a-zа-я][0-9]{3}[a-zа-я]{2}'), points=-2),
-    'len_>=_8': pattern_class(regexp=re.compile(r'.{8,}'), points=2),
-    'len_>=_14': pattern_class(regexp=re.compile(r'.{14,}'), points=2)
+    'lower_case': Pattern(regexp=re.compile(r'[a-zа-я]'), points=1),
+    'upper_case': Pattern(regexp=re.compile(r'[A-ZА-Я]'), points=1),
+    'digits': Pattern(regexp=re.compile(r'[0-9]'), points=1),
+    'special_characters': Pattern(regexp=re.compile(r'[\[\]{}()<>~_+-=!?;:,.@#$%&`*/|\\^\' ]'), points=2),
+    'phone_number': Pattern(regexp=re.compile(r'\+?[0-9\-()\s]{6,}'), points=-2),
+    'date': Pattern(regexp=re.compile(r'([0-9]{1,4}[./\s]?){3}'), points=-2),
+    'car_number': Pattern(regexp=re.compile(r'[a-zа-я][0-9]{3}[a-zа-я]{2}'), points=-2),
+    'len_>=_8': Pattern(regexp=re.compile(r'.{8,}'), points=2),
+    'len_>=_14': Pattern(regexp=re.compile(r'.{14,}'), points=2)
 }
 BLACKLIST_FILENAME = 'top.txt'
 
