@@ -20,9 +20,7 @@ BLACKLIST_FILENAME = 'top.txt'
 
 
 def is_blacklist_available():
-    if os.path.isfile(BLACKLIST_FILENAME):
-        return True
-    return False
+    return os.path.isfile(BLACKLIST_FILENAME)
 
 
 def is_password_top_used(password):
