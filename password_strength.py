@@ -4,7 +4,7 @@ from collections import namedtuple
 from getpass import getpass
 
 pattern_class = namedtuple('pattern_class', ['regexp', 'points'])
-# Было бы очень круто, если бы Wally стал понимать namedtuple ;)
+
 PASSWORD_PATTERNS = {
     'lower_case': pattern_class(regexp=re.compile(r'[a-zа-я]'), points=1),
     'upper_case': pattern_class(regexp=re.compile(r'[A-ZА-Я]'), points=1),
